@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пицца — Корочка</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="pizza-page">
+        <div class="container">
+            <div class="pizza-page-header">
+    <a href="index.html" class="back-link">← Вернуться в меню</a>
+
+    <button type="button" class="detail-cart-link" id="detail-cart-button">
+    Корзина (<span id="detail-cart-count">0</span>)
+    </button>
+</div>
+
+            <div id="pizza-details"></div>
+        </div>
+    </main>
+<div class="cart-modal" id="cart-modal" hidden>
+    <div class="cart-content">
+        <h2>Ваша корзина</h2>
+
+        <div id="cart-items">
+            Корзина пуста
+        </div>
+
+        <p>Итого: <strong id="cart-total">0 ₸</strong></p>
+
+        <button type="button" id="clear-cart">
+            Очистить корзину
+        </button>
+<button type="button" id="checkout-button">
+    Оформить заказ
+</button>
+
+<form id="order-form" hidden>
+    <h3>Оформление заказа</h3>
+
+    <input type="text" id="customer-name"
+           placeholder="Ваше имя" required>
+
+    <input type="tel" id="customer-phone"
+           placeholder="Ваш телефон" required>
+
+    <button type="submit">Подтвердить заказ</button>
+</form>
+
+        <button type="button" id="close-cart">
+            Закрыть
+        </button>
+    </div>
+</div>
+    <script src="data.js"></script>
+    <script src="cart.js"></script>
+    <script src="pizza.js"></script>
+</body>
+</html>

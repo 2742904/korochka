@@ -15,56 +15,6 @@ navLinks.forEach(function(link) {
         burger.setAttribute('aria-expanded', 'false');
     });
 });
-const pizzas = [
-    {
-        id: 1,
-        name: 'Маргарита',
-        description: 'Томатный соус, моцарелла, базилик',
-        price: 2500,
-        categories: ['vegetarian'],
-       image: 'https://images.pexels.com/photos/31450849/pexels-photo-31450849.jpeg?auto=compress&cs=tinysrgb&w=700&fm=webp'
-    },
-    {
-        id: 2,
-        name: 'Пепперони',
-        description: 'Пепперони, моцарелла, томатный соус',
-        price: 2900,
-        categories: ['meat', 'spicy'],
-        image: 'https://images.pexels.com/photos/6488932/pexels-photo-6488932.jpeg?auto=compress&cs=tinysrgb&w=700&fm=webp'
-    },
-{
-        id: 3,
-        name: 'Сырная',
-        description: 'Моцарелла, чеддер, пармезан',
-        price: 2800,
-        categories: ['vegetarian'],
-       image: 'https://images.pexels.com/photos/33592983/pexels-photo-33592983.jpeg?auto=compress&cs=tinysrgb&w=700&fm=webp'
-    },
-    {
-    id: 4,
-    name: 'Барбекю',
-    description: 'Курица, бекон, моцарелла, соус барбекю',
-    price: 3200,
-    categories: ['meat'],
-    image: 'https://images.pexels.com/photos/15832883/pexels-photo-15832883.jpeg?auto=compress&cs=tinysrgb&w=700&fm=webp'
-},
-{
-    id: 5,
-    name: 'Диабло',
-    description: 'Острая салями, халапеньо, моцарелла, томатный соус',
-    price: 3400,
-    categories: ['meat', 'spicy'],
-    image: 'https://images.pexels.com/photos/27582711/pexels-photo-27582711.jpeg?auto=compress&cs=tinysrgb&w=700&fm=webp'
-},
-{
-    id: 6,
-    name: 'Грибная',
-    description: 'Шампиньоны, моцарелла, сливочный соус',
-    price: 2700,
-    categories: ['vegetarian'],
-    image: 'https://images.pexels.com/photos/20117304/pexels-photo-20117304.jpeg?auto=compress&cs=tinysrgb&w=700&fm=webp'
-}
-];
 
 const pizzaGrid = document.querySelector('.pizza-grid');
 const filterButtons = document.querySelectorAll('.filter-button');
@@ -90,11 +40,8 @@ filterButtons.forEach(function(button) {
     });
 });
 const cartCount = document.querySelector('#cart-count');
-let cart = JSON.parse(localStorage.getItem('pizzaCart') || '[]');
 
-let count = cart.reduce(function(sum, item) {
-    return sum + item.quantity;
-}, 0);
+let count = getCartCount();
 
 cartCount.textContent = count;
 pizzas.forEach(function(pizza) {
@@ -103,9 +50,14 @@ pizzas.forEach(function(pizza) {
     card.dataset.id = pizza.id;
 
     card.innerHTML = `
-   <img src="${pizza.image}" alt="${pizza.name}" onerror="this.onerror=null; this.src='pizza-fallback.png'">
+   <a href="pizza.html?id=${pizza.id}" class="pizza-image-link">
+    <img src="${pizza.image}" alt="${pizza.name}" onerror="this.onerror=null; this.src='pizza-fallback.png'">
+</a>
     <div class="pizza-info">
-        <h3>${pizza.name} <span>0${pizza.id}</span></h3>
+        <h3>
+    <a href="pizza.html?id=${pizza.id}">${pizza.name}</a>
+    <span>0${pizza.id}</span>
+</h3>
         <p>${pizza.description}</p>
 
 <div class="pizza-sizes">
@@ -143,25 +95,13 @@ sizeButtons.forEach(function(button) {
 });
     const addButton = card.querySelector('.pizza-bottom button');
 
-addButton.addEventListener('click', function() {
-   const item = cart.find(function(element) {
-    return element.id === pizza.id && element.size === selectedSize;
-});
-    if (item) {
-        item.quantity++;
-    } else {
-       cart.push({
-    id: pizza.id,
-    size: selectedSize,
-    quantity: 1
-});
-    }
 
-    count++;
+addButton.addEventListener('click', function() {
+    addToCart(pizza.id, selectedSize);
+    count = getCartCount();
     cartCount.textContent = count;
-    saveCart();
-    console.log(cart);
 });
+
 });
 const cartButton = document.querySelector('.cart-button');
 const cartModal = document.querySelector('#cart-modal');
@@ -175,106 +115,4 @@ cartButton.addEventListener('click', function() {
 closeCart.addEventListener('click', function() {
     cartModal.hidden = true;
 });
-const cartItems = document.querySelector('#cart-items');
-const cartTotal = document.querySelector('#cart-total');
-
-function renderCart() {
-    saveCart();
-    cartItems.innerHTML = '';
-
-    if (cart.length === 0) {
-        cartItems.textContent = 'Корзина пуста';
-        cartTotal.textContent = '0 ₸';
-        return;
-    }
-
-    let total = 0;
-
-    cart.forEach(function(item) {
-        const pizza = pizzas.find(function(p) {
-            return p.id === item.id;
-        });
-
-        const itemPrice = pizza.price + ((item.size || 25) - 25) * 100;
-        total += itemPrice * item.quantity;
-
-        const row = document.createElement('div');
-
-row.innerHTML = `
-    <span>${pizza.name} ${item.size || 25} см — ${(itemPrice * item.quantity).toLocaleString('ru-RU')} ₸</span>
-    <button class="minus-button" type="button">−</button>
-    <span>${item.quantity} шт.</span>
-    <button class="plus-button" type="button">+</button>
-`;
-
-cartItems.appendChild(row);
-const plusButton = row.querySelector('.plus-button');
-const minusButton = row.querySelector('.minus-button');
-
-plusButton.addEventListener('click', function() {
-    item.quantity++;
-    count++;
-    cartCount.textContent = count;
-    renderCart();
-});
-
-minusButton.addEventListener('click', function() {
-    item.quantity--;
-    count--;
-
-    if (item.quantity === 0) {
-        const index = cart.indexOf(item);
-        cart.splice(index, 1);
-    }
-
-    cartCount.textContent = count;
-    renderCart();
-});
-    });
-
-    cartTotal.textContent = total.toLocaleString('ru-RU') + ' ₸';
-}
-    const clearCartButton = document.querySelector('#clear-cart');
-
-clearCartButton.addEventListener('click', function() {
-    cart.length = 0;
-    count = 0;
-    cartCount.textContent = count;
-    renderCart();
-});
-function saveCart() {
-    localStorage.setItem('pizzaCart', JSON.stringify(cart));
-}
-const checkoutButton = document.querySelector('#checkout-button');
-const orderForm = document.querySelector('#order-form');
-
-checkoutButton.addEventListener('click', function() {
-    orderForm.hidden = false;
-});
-orderForm.addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    const name = document.querySelector('#customer-name').value.trim();
-    const phone = document.querySelector('#customer-phone').value.trim();
-
-    if (name === '' || phone === '') {
-        alert('Заполните имя и телефон!');
-        return;
-    }
-
-    if (cart.length === 0) {
-        alert('Сначала добавьте пиццу в корзину!');
-        return;
-    }
-
-    alert('Спасибо, ' + name + '! Ваш заказ оформлен!');
-
-    cart.length = 0;
-    count = 0;
-    cartCount.textContent = count;
-
-    renderCart();
-    orderForm.reset();
-    orderForm.hidden = true;
-    cartModal.hidden = true;
-});
+    

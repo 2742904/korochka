@@ -322,3 +322,66 @@ margin-bottom: 30px;
     letter-spacing: 2.5px;
     text-transform: uppercase;
 }
+.detail-add-button {
+    background: #284635;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 15px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.detail-add-button:hover {
+    background: #3b624b;
+}
+
+.pizza-image-link {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+}
+
+.pizza-image-link img {
+    display: block;
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+}
+
+.pizza-info h3 a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.pizza-info h3 a:hover {
+    color: #c64b32;
+}
+.pizza-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.pizza-page-header .back-link {
+    margin-bottom: 0;
+}
+
+.detail-cart-link {
+    padding: 12px 18px;
+    background: #284635;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+@media (max-width: 760px) {
+    .pizza-page-header {
+        flex-wrap: wrap;
+    }
+}
