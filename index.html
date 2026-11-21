@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корочка - пицца для своих</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+ <header class="header">
+    <div class="container header-inner">
+        <a href="#home" class="logo">корочка<span>.</span></a>
+         <nav class="nav">
+             <a href="#menu">Меню</a>
+            <a href="#about">О нас</a>
+             <a href="#contacts">Контакты</a>
+         </nav>
+         <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false">
+    ☰
+</button>
+          <a class="header-button" href="#menu">Выбрать пиццу ↗</a>
+          <button class="cart-button" type="button">
+    Корзина (<span id="cart-count">0</span>)
+</button>
+     </div>
+    </header>
+
+    <main>
+     <section class="hero" id="home">
+        <div class="container hero-inner">
+            <div class="hero-text">
+                 <p class="eyebrow"><span class="dot"></span> ПИЦЦА ДЛЯ ХОРОШЕГО ВЕЧЕРА</p>
+                 <h1>Не делись<br>последним<br><em>кусочком.</em></h1>
+                 <p class="hero-description">Тонкое тесто, тянущийся сыр и любимые начинки. Просто вкусная пицца без лишних слов.</p>
+                 <a class="button" href="#menu">Смотреть меню <span>↗</span></a>
+        </div>
+        <div class="hero-photo">
+                    <img src="https://images.pexels.com/photos/6147827/pexels-photo-6147827.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200"
+                         alt="Аппетитная пицца с сыром и базиликом"
+                         onerror="this.onerror=null; this.src='pizza-fallback.png'">
+         <div class="photo-label">Хорошо, когда горячая.</div>
+         </div>
+        </div>
+        </section>
+
+        <section class="menu-section" id="menu">
+            <div class="container">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">ЧТО СЕГОДНЯ БЕРЁМ?</p>
+                        <h2>Наши любимчики</h2>
+                    </div>
+                    <p>Три классических вкуса.<br>Сложно выбрать только один.</p>
+                </div>
+                <div class="pizza-grid">
+                </div>
+                </div>
+        
+        </section>
+        <section class="about" id="about">
+            <div class="container about-inner">
+                <div>
+                    <p class="eyebrow">ЧТО НАМ НРАВИТСЯ</p>
+                    <h2>Побольше сыра.<br>Поменьше правил.</h2>
+                </div>
+                <p>Хорошая пицца не требует особого повода. Вечер кино, встреча с друзьями или просто пятница - подойдёт всё.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contacts">
+        <div class="container footer-inner">
+            <a href="#home" class="logo">корочка<span>.</span></a>
+            <a href="tel:+77001234567">+7 (700) 123-45-67</a>           
+            <div class="footer-contacts">
+    <p>Адрес: г. Алматы, ул. Примерная, 10</p>
+    <p>Ежедневно: 10:00–22:00</p>
+        </div>
+            <a href="#home">Наверх ↑</a>
+        </div>
+    </footer>
+<div class="cart-modal" id="cart-modal" hidden>
+    <div class="cart-content">
+        <h2>Ваша корзина</h2>
+
+        <div id="cart-items">
+            Корзина пуста
+        </div>
+
+        <p>Итого: <strong id="cart-total">0 ₸</strong></p>
+
+        <button type="button" id="clear-cart">
+            Очистить корзину
+        </button>
+<button type="button" id="checkout-button">
+    Оформить заказ
+</button>
+
+<form id="order-form" hidden>
+    <h3>Оформление заказа</h3>
+
+    <input type="text" id="customer-name"
+           placeholder="Ваше имя" required>
+
+    <input type="tel" id="customer-phone"
+           placeholder="Ваш телефон" required>
+
+    <button type="submit">Подтвердить заказ</button>
+</form>
+
+        <button type="button" id="close-cart">
+            Закрыть
+        </button>
+    </div>
+</div>
+    <script src="script.js"></script>
+</body>
+</html>
