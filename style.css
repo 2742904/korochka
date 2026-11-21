@@ -258,3 +258,67 @@ footer { background: #faf8f2; }
         font-size: 12px;
     }
 }
+.pizza-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+margin-bottom: 30px;
+}
+
+.filter-button,
+.size-button {
+    border: 1px solid #284635;
+    border-radius: 5px;
+    background: transparent;
+    color: #284635;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.filter-button:hover,
+.size-button:hover {
+    background: #e3e9df;
+}
+
+.filter-button.active,
+.size-button.active {
+    background: #284635;
+    color: white;
+}
+
+.pizza-sizes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.size-button {
+    padding: 7px 12px;
+    font-size: 13px;
+}
+.menu-section .section-heading h2 {
+    font-size: clamp(38px, 4vw, 54px);
+    font-weight: 800;
+    letter-spacing: -2px;
+    line-height: 1.1;
+}
+
+.menu-section .section-heading > p {
+    font-size: 17px;
+    line-height: 1.8;
+    font-style: italic;
+    color: #716b60;
+}
+
+.menu-section .eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+}

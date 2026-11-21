@@ -21,6 +21,7 @@ const pizzas = [
         name: 'Маргарита',
         description: 'Томатный соус, моцарелла, базилик',
         price: 2500,
+        categories: ['vegetarian'],
        image: 'https://images.pexels.com/photos/31450849/pexels-photo-31450849.jpeg?auto=compress&cs=tinysrgb&w=700&fm=webp'
     },
     {
@@ -28,6 +29,7 @@ const pizzas = [
         name: 'Пепперони',
         description: 'Пепперони, моцарелла, томатный соус',
         price: 2900,
+        categories: ['meat', 'spicy'],
         image: 'https://images.pexels.com/photos/6488932/pexels-photo-6488932.jpeg?auto=compress&cs=tinysrgb&w=700&fm=webp'
     },
 {
@@ -35,11 +37,58 @@ const pizzas = [
         name: 'Сырная',
         description: 'Моцарелла, чеддер, пармезан',
         price: 2800,
+        categories: ['vegetarian'],
        image: 'https://images.pexels.com/photos/33592983/pexels-photo-33592983.jpeg?auto=compress&cs=tinysrgb&w=700&fm=webp'
-    }
+    },
+    {
+    id: 4,
+    name: 'Барбекю',
+    description: 'Курица, бекон, моцарелла, соус барбекю',
+    price: 3200,
+    categories: ['meat'],
+    image: 'pizza-fallback.png'
+},
+{
+    id: 5,
+    name: 'Диабло',
+    description: 'Острая салями, халапеньо, моцарелла, томатный соус',
+    price: 3400,
+    categories: ['meat', 'spicy'],
+    image: 'pizza-fallback.png'
+},
+{
+    id: 6,
+    name: 'Грибная',
+    description: 'Шампиньоны, моцарелла, сливочный соус',
+    price: 2700,
+    categories: ['vegetarian'],
+    image: 'pizza-fallback.png'
+}
 ];
-const pizzaGrid = document.querySelector('.pizza-grid');
 
+const pizzaGrid = document.querySelector('.pizza-grid');
+const filterButtons = document.querySelectorAll('.filter-button');
+
+filterButtons.forEach(function(button) {
+    button.addEventListener('click', function() {
+        const category = button.dataset.category;
+
+        filterButtons.forEach(function(btn) {
+            btn.classList.remove('active');
+        });
+
+        button.classList.add('active');
+
+        document.querySelectorAll('.pizza-card').forEach(function(card) {
+            const pizzaId = Number(card.dataset.id);
+            const pizza = pizzas.find(function(p) {
+                return p.id === pizzaId;
+            });
+
+            card.hidden = category !== 'all' && !pizza.categories.includes(category);
+        });
+    });
+});
 const cartCount = document.querySelector('#cart-count');
 let cart = JSON.parse(localStorage.getItem('pizzaCart') || '[]');
 
@@ -51,6 +100,7 @@ cartCount.textContent = count;
 pizzas.forEach(function(pizza) {
     const card = document.createElement('article');
     card.classList.add('pizza-card');
+    card.dataset.id = pizza.id;
 
     card.innerHTML = `
    <img src="${pizza.image}" alt="${pizza.name}" onerror="this.onerror=null; this.src='pizza-fallback.png'">
