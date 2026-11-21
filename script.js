@@ -46,7 +46,7 @@ const pizzas = [
     description: 'Курица, бекон, моцарелла, соус барбекю',
     price: 3200,
     categories: ['meat'],
-    image: 'pizza-fallback.png'
+    image: 'https://images.pexels.com/photos/15832883/pexels-photo-15832883.jpeg?auto=compress&cs=tinysrgb&w=700&fm=webp'
 },
 {
     id: 5,
@@ -54,7 +54,7 @@ const pizzas = [
     description: 'Острая салями, халапеньо, моцарелла, томатный соус',
     price: 3400,
     categories: ['meat', 'spicy'],
-    image: 'pizza-fallback.png'
+    image: 'https://images.pexels.com/photos/27582711/pexels-photo-27582711.jpeg?auto=compress&cs=tinysrgb&w=700&fm=webp'
 },
 {
     id: 6,
@@ -62,7 +62,7 @@ const pizzas = [
     description: 'Шампиньоны, моцарелла, сливочный соус',
     price: 2700,
     categories: ['vegetarian'],
-    image: 'pizza-fallback.png'
+    image: 'https://images.pexels.com/photos/20117304/pexels-photo-20117304.jpeg?auto=compress&cs=tinysrgb&w=700&fm=webp'
 }
 ];
 
