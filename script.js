@@ -58,6 +58,12 @@ pizzas.forEach(function(pizza) {
         <h3>${pizza.name} <span>0${pizza.id}</span></h3>
         <p>${pizza.description}</p>
 
+<div class="pizza-sizes">
+    <button type="button" class="size-button active" data-size="25">25 см</button>
+    <button type="button" class="size-button" data-size="30">30 см</button>
+    <button type="button" class="size-button" data-size="35">35 см</button>
+</div>
+
         <div class="pizza-bottom">
             <strong>${pizza.price.toLocaleString('ru-RU')} ₸</strong>
             <button type="button">Выбрать +</button>
@@ -66,20 +72,39 @@ pizzas.forEach(function(pizza) {
 `;
 
     pizzaGrid.appendChild(card);
-    const addButton = card.querySelector('button');
+    let selectedSize = 25;
+
+const sizeButtons = card.querySelectorAll('.size-button');
+const priceElement = card.querySelector('.pizza-bottom strong');
+
+sizeButtons.forEach(function(button) {
+    button.addEventListener('click', function() {
+        selectedSize = Number(button.dataset.size);
+
+        sizeButtons.forEach(function(btn) {
+            btn.classList.remove('active');
+        });
+
+        button.classList.add('active');
+
+        const newPrice = pizza.price + (selectedSize - 25) * 100;
+        priceElement.textContent = newPrice.toLocaleString('ru-RU') + ' ₸';
+    });
+});
+    const addButton = card.querySelector('.pizza-bottom button');
 
 addButton.addEventListener('click', function() {
-    const item = cart.find(function(element) {
-        return element.id === pizza.id;
-    });
-
+   const item = cart.find(function(element) {
+    return element.id === pizza.id && element.size === selectedSize;
+});
     if (item) {
         item.quantity++;
     } else {
-        cart.push({
-            id: pizza.id,
-            quantity: 1
-        });
+       cart.push({
+    id: pizza.id,
+    size: selectedSize,
+    quantity: 1
+});
     }
 
     count++;
@@ -120,12 +145,13 @@ function renderCart() {
             return p.id === item.id;
         });
 
-        total += pizza.price * item.quantity;
+        const itemPrice = pizza.price + ((item.size || 25) - 25) * 100;
+        total += itemPrice * item.quantity;
 
-       const row = document.createElement('div');
+        const row = document.createElement('div');
 
 row.innerHTML = `
-    <span>${pizza.name} — ${(pizza.price * item.quantity).toLocaleString('ru-RU')} ₸</span>
+    <span>${pizza.name} ${item.size || 25} см — ${(itemPrice * item.quantity).toLocaleString('ru-RU')} ₸</span>
     <button class="minus-button" type="button">−</button>
     <span>${item.quantity} шт.</span>
     <button class="plus-button" type="button">+</button>
