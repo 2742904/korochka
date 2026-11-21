@@ -86,10 +86,7 @@ const cartModal = document.querySelector('#cart-modal');
 const closeCart = document.querySelector('#close-cart');
 
 cartButton.addEventListener('click', function() {
-    cartButton.addEventListener('click', function() {
     renderCart();
-    cartModal.hidden = false;
-});
     cartModal.hidden = false;
 });
 
