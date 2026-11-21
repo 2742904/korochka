@@ -77,7 +77,7 @@ addButton.addEventListener('click', function() {
 
     count++;
     cartCount.textContent = count;
-
+    saveCart();
     console.log(cart);
 });
 });
