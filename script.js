@@ -14,21 +14,21 @@ const pizzas = [
         name: 'Маргарита',
         description: 'Томатный соус, моцарелла, базилик',
         price: 2500,
-       image: 'https://images.pexels.com/photos/31450849/pexels-photo-31450849.jpeg'
+       image: 'https://images.pexels.com/photos/31450849/pexels-photo-31450849.jpeg?auto=compress&cs=tinysrgb&w=700&fm=webp'
     },
     {
         id: 2,
         name: 'Пепперони',
         description: 'Пепперони, моцарелла, томатный соус',
         price: 2900,
-        image: 'https://images.pexels.com/photos/6488932/pexels-photo-6488932.jpeg'
+        image: 'https://images.pexels.com/photos/6488932/pexels-photo-6488932.jpeg?auto=compress&cs=tinysrgb&w=700&fm=webp'
     },
-    {
+{
         id: 3,
         name: 'Сырная',
         description: 'Моцарелла, чеддер, пармезан',
         price: 2800,
-       image: 'https://images.pexels.com/photos/33592983/pexels-photo-33592983.jpeg'
+       image: 'https://images.pexels.com/photos/33592983/pexels-photo-33592983.jpeg?auto=compress&cs=tinysrgb&w=700&fm=webp'
     }
 ];
 const pizzaGrid = document.querySelector('.pizza-grid');
