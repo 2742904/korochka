@@ -118,7 +118,7 @@ function renderCart() {
        const row = document.createElement('div');
 
 row.innerHTML = `
-    <span>${pizza.name} — ${pizza.price * item.quantity} ₸</span>
+    <span>${pizza.name} — ${(pizza.price * item.quantity).toLocaleString('ru-RU')} ₸</span>
     <button class="minus-button" type="button">−</button>
     <span>${item.quantity} шт.</span>
     <button class="plus-button" type="button">+</button>
