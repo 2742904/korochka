@@ -7,7 +7,14 @@ burger.addEventListener('click', function() {
     const isOpen = nav.classList.contains('nav-open');
     burger.setAttribute('aria-expanded', isOpen);
 });
+const navLinks = nav.querySelectorAll('a');
 
+navLinks.forEach(function(link) {
+    link.addEventListener('click', function() {
+        nav.classList.remove('nav-open');
+        burger.setAttribute('aria-expanded', 'false');
+    });
+});
 const pizzas = [
     {
         id: 1,

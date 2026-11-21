@@ -74,7 +74,7 @@ footer { background: #faf8f2; }
     .header-inner { height: 72px; }
     .logo { font-size: 29px; }
     .nav { display: none; }
-    .header-button { padding: 11px 13px; font-size: 12px; }
+    .header-button { display: none; }
     .hero { padding: 40px 0 60px; }
     .hero-inner { grid-template-columns: 1fr; gap: 34px; }
     h1 { font-size: 56px; letter-spacing: -2px; }
@@ -103,13 +103,14 @@ footer { background: #faf8f2; }
     padding: 20px 24px;
     background: #faf8f2;
     z-index: 10;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+    }
+    .cart-button { order: 1; }
+.burger { order: 2; }
   }
-
-}
 .cart-modal[hidden] {
     display: none;
 }
-
 .cart-modal {
     position: fixed;
     inset: 0;
@@ -120,7 +121,6 @@ footer { background: #faf8f2; }
     z-index: 100;
     padding: 20px;
 }
-
 .cart-content {
     background: #faf8f2;
     padding: 30px;
